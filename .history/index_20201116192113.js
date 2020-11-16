@@ -28,8 +28,8 @@ client.connect(err => {
   
    /*@request-booking api */
   app.post('/request-booking',(req,res)=>{
-         const bookingInfo = req.body;
-         bookingCollection.insertOne(bookingInfo)
+        const bookingInfo = req.body;
+        bookingCollection.insertOne(bookingInfo)
         .then(result=> res.status(200).send(result.insertedCount > 0));
   })
 
@@ -70,7 +70,7 @@ client.connect(err => {
   })
   
 
-    /*@booking-list api*/
+  /*@booking-list api*/
 
   app.get('/booking-list', (req, res)=>{
     bookingCollection.find({}).toArray((err,document)=>{
