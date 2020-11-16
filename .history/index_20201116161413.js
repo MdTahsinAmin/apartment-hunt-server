@@ -57,14 +57,6 @@ client.connect(err => {
    .then(result=> res.send(result.insertedCount > 0));
 
   })
-
-  app.get('/my-rent-house',(req, res)=>{
-      console.log(req.query);
-      rentHouseCollection.find({email: req.query.email})
-      .toArray((err,document)=>{
-        res.send(document);
-      })
-  })
   
 
 

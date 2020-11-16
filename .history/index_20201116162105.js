@@ -60,10 +60,6 @@ client.connect(err => {
 
   app.get('/my-rent-house',(req, res)=>{
       console.log(req.query);
-      rentHouseCollection.find({email: req.query.email})
-      .toArray((err,document)=>{
-        res.send(document);
-      })
   })
   
 
