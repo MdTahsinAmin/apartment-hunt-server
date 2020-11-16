@@ -19,17 +19,10 @@ app.use(fileUpload());
 
 const uri = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@cluster0.ntqwp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri,{ useNewUrlParser: true, useUnifiedTopology: true});
-
 client.connect(err => {
   const bookingCollection = client.db(`${process.env.DB_NAME}`).collection("request-booking");
-  console.log('database connection');
-  
-  app.post('/request-booking',(req,res)=>{
-        const bookingInfo = req.body;
-        bookingCollection.insertOne(bookingInfo)
-        .then(result=> res.status(200).send(result.insertedCount > 0));
-  })
 
+  console.log('database connection');
  
 });
 

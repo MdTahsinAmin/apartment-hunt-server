@@ -27,7 +27,7 @@ client.connect(err => {
   app.post('/request-booking',(req,res)=>{
         const bookingInfo = req.body;
         bookingCollection.insertOne(bookingInfo)
-        .then(result=> res.status(200).send(result.insertedCount > 0));
+        .then(result=> console.log(result));
   })
 
  
