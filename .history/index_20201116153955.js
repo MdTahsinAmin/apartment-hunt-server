@@ -33,28 +33,8 @@ client.connect(err => {
         .then(result=> res.status(200).send(result.insertedCount > 0));
   })
 
-   /* @add-rent-house api */
-
   app.post('/add-rent-house',(req, res)=>{
-    const file = req.files.file;
-    const serviceTitle = req.body.serviceTitle;
-    const price = req.body.price;
-    const location = req.body.location;
-    const bedrooms = req.body.bedrooms;
-    const bathrooms = req.body.bathrooms;
-
-    const newImg = file.data;
-    const encImg = newImg.toString('base64');
-
-    let image = {
-      contentType: file.mimetype,
-      size: file.size,
-      img: Buffer.from(encImg, 'base64')
-   };
-    
-   rentHouseCollection.insertOne({serviceTitle,price,location,bedrooms,bathrooms,image})
-   .then(result=> res.send(result.insertedCount > 0));
-
+         console.log(req.body);
   })
 
 
