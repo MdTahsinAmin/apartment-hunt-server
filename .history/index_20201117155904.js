@@ -5,7 +5,6 @@ const  bodyParser = require('body-parser')
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
 const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config()
 
 /* @use part */
@@ -91,11 +90,7 @@ client.connect(err => {
  })
  
  app.get('/exact-apartment/:id', (req, res)=>{
-       rentHouseCollection.find({_id:ObjectId(req.params.id)})
-       .toArray((err,document)=>{
-         res.send(document)
-       })
-       
+       console.log(req.params.id);
  })
 
 

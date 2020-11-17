@@ -5,7 +5,6 @@ const  bodyParser = require('body-parser')
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
 const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config()
 
 /* @use part */
@@ -35,8 +34,10 @@ client.connect(err => {
   })
 
    /* @add-rent-house api */
+
   app.post('/add-rent-house',(req, res)=>{
     const file = req.files.file;
+    const email = req.body.email;
     const title = req.body.title;
     const price = req.body.price;
     const location = req.body.location;
@@ -52,51 +53,38 @@ client.connect(err => {
       img: Buffer.from(encImg, 'base64')
    };
     
-    rentHouseCollection.insertOne({title,price,location,bedroom,bathroom,image})
+    rentHouseCollection.insertOne({email,title,price,location,bedroom,bathroom,image})
    .then(result=> res.send(result.insertedCount > 0));
 
   })
 
-  /*@all-house api*/ 
-  
-  app.get('/all-house', (req, res)=>{
-      rentHouseCollection.find({}).toArray((err,document)=>{
-           res.send(document);
-      })
-  })
 
 
    /* @my-rent-house */
-/*  app.get('/my-rent-house',(req, res)=>{
+  app.get('/my-rent-house',(req, res)=>{
       console.log(req.query);
       rentHouseCollection.find({email: req.query.email})
       .toArray((err,document)=>{
         res.send(document);
       })
-  })*/
+  })
   
     /*@booking-list api*/
+
   app.get('/booking-list', (req, res)=>{
     bookingCollection.find({}).toArray((err,document)=>{
         res.send(document);
     })
   })
   
-  /*@check-admin api*/
  app.post('/check-admin', (req, res)=>{
+      console.log(req.body);
       adminCollection.find({email:req.body.email})
       .toArray((err,document)=>{
          res.send(document.length > 0);
       })
  })
- 
- app.get('/exact-apartment/:id', (req, res)=>{
-       rentHouseCollection.find({_id:ObjectId(req.params.id)})
-       .toArray((err,document)=>{
-         res.send(document)
-       })
-       
- })
+
 
 
 
