@@ -71,7 +71,7 @@ client.connect(err => {
       console.log(req.query);
       bookingCollection.find({email: req.query.email})
       .toArray((err,document)=>{
-        res.send(document)
+        res.send(document);
       })
   })
   
@@ -97,6 +97,9 @@ client.connect(err => {
        })
        
  })
+
+
+
 
 
  
