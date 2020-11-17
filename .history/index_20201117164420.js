@@ -66,14 +66,14 @@ client.connect(err => {
   })
 
 
-   /* @my-booking-house */
-  app.get('/my-booking-house',(req, res)=>{
+   /* @my-rent-house */
+/*  app.get('/my-rent-house',(req, res)=>{
       console.log(req.query);
-      bookingCollection.find({email: req.query.email})
+      rentHouseCollection.find({email: req.query.email})
       .toArray((err,document)=>{
-        res.send(document)
+        res.send(document);
       })
-  })
+  })*/
   
     /*@booking-list api*/
   app.get('/booking-list', (req, res)=>{
@@ -97,6 +97,9 @@ client.connect(err => {
        })
        
  })
+
+
+
 
 
  
