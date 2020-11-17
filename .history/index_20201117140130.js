@@ -77,13 +77,12 @@ client.connect(err => {
     })
   })
   
- app.post('/check-admin', (req, res)=>{
-      console.log(req.body);
-      adminCollection.find({email:req.body.email})
-      .toArray((err,document)=>{
-         res.send(document.length > 0);
-      })
- })
+  app.post('/make-admin', (req, res)=>{
+        console.log(req.body.email);
+        adminCollection.insertOne({email:req.body.email}).then(result=>{
+          res.send(result.insertedCount > 0);
+        })
+  })
 
 
 

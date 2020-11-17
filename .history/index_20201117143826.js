@@ -79,10 +79,6 @@ client.connect(err => {
   
  app.post('/check-admin', (req, res)=>{
       console.log(req.body);
-      adminCollection.find({email:req.body.email})
-      .toArray((err,document)=>{
-         res.send(document.length > 0);
-      })
  })
 
 
