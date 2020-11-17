@@ -91,11 +91,7 @@ client.connect(err => {
  })
  
  app.get('/exact-apartment/:id', (req, res)=>{
-       rentHouseCollection.find({_id:ObjectId(req.params.id)})
-       .toArray((err,document)=>{
-         res.send(document)
-       })
-       
+       console.log(req.params.id);
  })
 
 

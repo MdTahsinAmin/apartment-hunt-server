@@ -5,7 +5,6 @@ const  bodyParser = require('body-parser')
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
 const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config()
 
 /* @use part */
@@ -84,18 +83,15 @@ client.connect(err => {
   
   /*@check-admin api*/
  app.post('/check-admin', (req, res)=>{
+      console.log(req.body);
       adminCollection.find({email:req.body.email})
       .toArray((err,document)=>{
          res.send(document.length > 0);
       })
  })
  
- app.get('/exact-apartment/:id', (req, res)=>{
-       rentHouseCollection.find({_id:ObjectId(req.params.id)})
-       .toArray((err,document)=>{
-         res.send(document)
-       })
-       
+ app.get('/exact-apartment', (req, res)=>{
+     
  })
 
 
